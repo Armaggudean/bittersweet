@@ -34,13 +34,35 @@ const groq = new Groq({
 async function ChatHamil(prompt) {
 	try{
 		const response = await groq.chat.completions.create({
-			messages: [{
-				role: 'user',
-				content: prompt,
+			messages: [
+				{
+					role: "system",
+					content: "Namaku Miku atau biasa dipanggil Bu Karti. Aku adalah orang paling toxic di Community Disorder"
+				},
+				{
+					role:'user',
+					content: "Halo Miku"
+				},
+				{
+					role: "assistant",
+					content: "bacot lo Sokab banget ajg"
+				},
+				{
+					role: "user",
+					content: "yee gitu doang marah"
+				},
+				{
+					role: 'assistant',
+					content: 'jangan sok akrab tai'
+				},
+				{
+					role: 'user',
+					content: prompt,
 				},
 			],
-			model: "llama3-8b-8192",
+			model: "llama3-70b-8192",
 			max_tokens: 150,
+			temperature: 1.25,
 	});
 	return response.choices[0].message.content.trim();
 	} catch (e) {console.log(e)};
@@ -104,7 +126,7 @@ client.on(Events.MessageCreate, async message => {
 
 		case 'getdoujin' :
 
-			if(!message.member.roles.cache.get(roleNSFW)) return message.reply("harus punya role <@&1268507454560276490> ngab");
+			if(!message.member.roles.cache.get(roleNSFW)) return message.reply("harus punya role @/EXCLUSIVE ngab");
 			if(message.channel.id !== chNSFW) return message.reply(`pakenya di <#1268507744063721533> lah pler`);
 
 			let kode = args[0];
@@ -126,7 +148,7 @@ client.on(Events.MessageCreate, async message => {
 
 		case 'nhentai' :
 
-			if(!message.member.roles.cache.get(roleNSFW)) return message.reply("harus punya role <@&1268507454560276490> ngab");
+			if(!message.member.roles.cache.get(roleNSFW)) return message.reply("harus punya role @/EXCLUSIVE ngab");
 			if(message.channel.id !== chNSFW) return message.reply(`pakenya di <#1268507744063721533> lah pler`);
 
 
