@@ -86,7 +86,7 @@ client.on(Events.MessageCreate, async message =>{
 
 client.once(Events.ClientReady, readyClient => {
 	console.log(`${readyClient.user.tag} Login asuk`);
-	client.user.setActivity('dildo');
+	client.user.setActivity('Community Discorder');
 });
 
 client.on(Events.MessageCreate, async message => {
