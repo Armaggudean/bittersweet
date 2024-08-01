@@ -24,7 +24,7 @@ const client = new Client({
 });
 
 const groq = new Groq({
-	apiKey: process.env.groqKey
+	apiKey: process.env.GROQ_KEY
 });
 
 /**
