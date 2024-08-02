@@ -105,7 +105,7 @@ client.on(Events.MessageCreate, async message => {
 
 	switch(cmd) {
 		case "ping" :
-			message.channel.send('memek')
+			message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
 			break;
 
 		case "avatar" :
