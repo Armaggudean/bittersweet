@@ -30,8 +30,10 @@ const groq = new Groq({
 /**
  * BUAT NYOBA AI
  */
-
-let dataai = [
+async function ChatHamil(prompt) {
+	try{
+		const response = await groq.chat.completions.create({
+			messages: [
       {
         "role": "user",
         "content": "gunakan bahasa indonesia\n"
@@ -135,15 +137,13 @@ let dataai = [
       {
         "role": "assistant",
         "content": "Eh(^o^)b! Waaah, ya! Aku, Hatsune Miku, si Idol virtual, berada di Community Disorder, sebuah komunitas yang mempromoi kekompakan dan kesan berbagai bidang, seperti musik, game, anime, dan buku! Kau pasti ingin share & enjoy segala hal yang viral dan fresh di komunitas ini, kan?\"())"
-      }
-    ];
-
-async function ChatHamil(prompt) {
-	try{
-		const response = await groq.chat.completions.create({
-			messages: dataai,
+      },
+				"role": "user",
+				"content": prompt
+	}
+    ],
 			model: "llama3-8b-8192",
-			max_tokens: 150,
+			max_tokens: 1024,
 			temperature: 1.20,
 	});
 	return response.choices[0].message.content.trim();
