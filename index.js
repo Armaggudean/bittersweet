@@ -34,14 +34,14 @@ const userSessions = {};
 
 client.on(Events.MessageCreate, async message => {
 	if(message.author.bot) return;
-	if(message.channel.id !== '1090823940148035694') return;
+	if(message.channel.id !== '1268534290703061034') return;
 
 	const userId = message.author.id;
 
 	if (!userSessions[userId]) {
         userSessions[userId] = {
             messages: [],
-			sesId: "1268534290703061034"
+			sesId: ""
         };
     }
 
