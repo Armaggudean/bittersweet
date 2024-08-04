@@ -10,6 +10,7 @@ const path = require('path');
 const { PaginatedEmbed } = require('embed-paginator');
 const { warn } = require("console");
 const { Groq } = require('groq-sdk');
+const axios = require("axios");
 const token = process.env.TOKEN;
 const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
