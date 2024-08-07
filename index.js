@@ -96,7 +96,7 @@ client.on(Events.MessageCreate, async message => {
 
 		case 'nhentai' :
 
-			util.getdoujin(message, args);
+			util.getdoujin(message, args, warnatai);
 
 			break;
 
