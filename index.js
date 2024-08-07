@@ -90,6 +90,67 @@ client.on(Events.MessageCreate, async message => {
 			message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
 			break;
 
+		case 'ig' :
+			const iguser = args[0];
+			const igresp = await axios.get(`https://skizo.tech/api/igstalk?apikey=confutatis3000&user=${iguser}`);
+			const userdata = igresp.data
+			if(userdata.username === "") return message.reply('usernya gada/private account');
+
+			const canvas = createCanvas(800, 450);
+	        	const ctx = canvas.getContext('2d');
+
+			ctx.fillStyle = '#fff';
+        		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+			try {
+				const image = await loadImage(userdata.photo_profile);
+				ctx.save();
+				ctx.beginPath();
+				ctx.arc(150, 150, 75, 0, Math.PI * 2, true);
+				ctx.closePath();
+				ctx.clip();
+				ctx.drawImage(image, 75, 75, 150, 150);
+				ctx.restore();
+			} catch (err) {
+				console.error('Failed to load image:', err);
+			}
+
+			ctx.fillStyle = '#333';
+        		ctx.font = 'bold 32px Arial';
+        		ctx.textAlign = 'center';
+        		ctx.fillText(userdata.username, 150, 250);
+
+			ctx.font = '24px Arial';
+			ctx.fillStyle = '#333';
+			ctx.textAlign = 'center';
+			ctx.fillText(userdata.posts, 350, 150);
+			ctx.fillText(userdata.followers, 550, 150);
+			ctx.fillText(userdata.following, 720, 150);
+			ctx.font = 'bold 24px Arial';
+			ctx.fillStyle = '#333';
+			ctx.textAlign = 'center';
+			ctx.fillText('Posts', 350, 200);
+			ctx.fillText('Followers', 550, 200);
+			ctx.fillText('Following', 720, 200);
+			ctx.font = 'bold 18px Arial';
+			ctx.fillStyle = '#333';
+			ctx.textAlign = 'left';
+			ctx.fillText('Bio:', 50, 300);
+			ctx.font = '18px Arial';
+			ctx.fillStyle = '#666';
+			ctx.textAlign = 'left';
+			ctx.fillText(userdata.bio, 55, 325)
+
+			const buffer = canvas.toBuffer('image/png')
+
+			message.channel.send({ files: [{ attachment: buffer, name: 'profile-canvas.png' }] })
+          		  .then(() => {
+            		    console.log('Profile canvas sent!');
+           		 })
+           		 .catch(console.error);
+
+			break;
+
 		case "tiktok" :
 			const ttURL = args[0];
 			const ttValid = /^https?:\/\/(www\.)?(tiktok\.com|vt\.tiktok\.com)\/(?:@[\w\.]+\/video\/\d+|[\w\.]+\/video\/\d+|video\/\d+|[\w\.]+|@[\w\.]+|[A-Za-z0-9]+)(\/)?(\?.*)?$/;
