@@ -90,23 +90,42 @@ client.on(Events.MessageCreate, async message => {
 			message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
 			break;
 
-		case "mp4" :
-			let vidURL = args[0];
-			var vidPattern = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
+		case "tiktok" :
+			const ttURL = args[0];
+			const ttValid = /^https?:\/\/(www\.)?(tiktok\.com|vt\.tiktok\.com)\/(?:@[\w\.]+\/video\/\d+|[\w\.]+\/video\/\d+|video\/\d+|[\w\.]+|@[\w\.]+|[A-Za-z0-9]+)(\/)?(\?.*)?$/;
 
-			if(vidPattern.test(vidURL) === true) {
-				const res = await axios.get(`https://skizo.tech/api/download?apikey=confutatis3000&url=${vidURL}`);
+			if(ttValid.test(ttURL) === true) {
+				const res = await axios.get(`https://skizo.tech/api/tiktok?apikey=confutatis3000&url=${ttURL}`);
 				message.reply({
 					files: [{
-						attachment: res.data.response.formats[0].url,
+						attachment: res.data.data.hdplay,
 						name: 'donglot.mp4',
 					}]
 				});
-			} else if(vidPattern.test(vidURL) === false) {
+			} else if(ttValid.test(ttURL) === false) {
 				message.reply('yg bener url nya pepej');
 			}
 			break;
 
+		case 'instagram' :
+			const instaURL = args[0];
+			const instaValid = /^https?:\/\/(?:www\.)?instagram\.com\/(?:p\/[\w-]+|reel\/[\w-]+)(?:\/\?.*)?$/;
+
+			if(instaValid.test(instaURL) === true) {
+				const res = await axios.get(`https://skizo.tech/api/instagram?apikey=confutatis3000&url=${instaURL}`);
+				for(let i = 0; i < res.data.length; i++) {
+					message.reply({
+						files: [{
+							attachment: res.data[i].url,
+							name: 'donglot.mp4'
+						}]
+					});
+				}
+			} else if (instaValid.test(instaURL) === false) {
+				message.reply('yg bener url nya pepej')
+			}
+			break;
+			
 		case "avatar" :
 			let mention = client.users.cache.get(args[0]) || message.mentions.users.first() || message.author 
   			let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
