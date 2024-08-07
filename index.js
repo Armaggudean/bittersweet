@@ -98,7 +98,7 @@ client.on(Events.MessageCreate, async message => {
 				const res = await axios.get(`https://skizo.tech/api/tiktok?apikey=confutatis3000&url=${ttURL}`);
 				message.reply({
 					files: [{
-						attachment: res.data.data.hdplay,
+						attachment: res.data.data.play,
 						name: 'donglot.mp4',
 					}]
 				});
