@@ -117,7 +117,7 @@ client.on(Events.MessageCreate, async message => {
 			}
 
 			ctx.fillStyle = '#333';
-        		ctx.font = 'bold 32px Arial';
+        		ctx.font = 'bold 28px Arial';
         		ctx.textAlign = 'center';
         		ctx.fillText(userdata.username, 150, 250);
 
