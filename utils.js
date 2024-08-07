@@ -187,7 +187,7 @@ const doujindl = async(message, args) => {
 
 }
 
-const getdoujin = async(message, args) => {
+const getdoujin = async(message, args, warnatai) => {
     if(!message.member.roles.cache.get(roleNSFW)) return message.reply("harus punya role @/EXCLUSIVE ngab");
 			if(message.channel.id !== chNSFW) return message.reply(`pakenya di <#1268507744063721533> lah pler`);
 
