@@ -27,7 +27,7 @@ const client = new Client({
 
 client.on(Events.MessageCreate, async message => {
 	if(message.author.bot) return;
-	if(message.channel.id !== '1090823940148035694') return;
+	if(message.channel.id !== '1268534290703061034') return;
 
 	util.characterAI(message);
 })
