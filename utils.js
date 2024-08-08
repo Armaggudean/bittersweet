@@ -51,7 +51,7 @@ const characterAI = async message => {
 
 const igStalk = async (message, args) => {
     	const iguser = args[0];
-	const igresp = await axios.get(`https://skizo.tech/api/igstalk?apikey=confutatis3000&user=${iguser}`);
+	const igresp = await axios.get(`https://skizo.tech/api/igstalk?apikey=${process.env.skizo}&user=${iguser}`);
 	const userdata = igresp.data
 	if(userdata.username === "") return message.reply('usernya gada/private account');
 
@@ -114,7 +114,7 @@ const ttdl = async(message, args) => {
 	const ttValid = /^https?:\/\/(www\.)?(tiktok\.com|vt\.tiktok\.com)\/(?:@[\w\.]+\/video\/\d+|[\w\.]+\/video\/\d+|video\/\d+|[\w\.]+|@[\w\.]+|[A-Za-z0-9]+)(\/)?(\?.*)?$/;
 
 	if(ttValid.test(ttURL) === true) {
-	const res = await axios.get(`https://skizo.tech/api/tiktok?apikey=confutatis3000&url=${ttURL}`);
+	const res = await axios.get(`https://skizo.tech/api/tiktok?apikey=${process.env.skizo}&url=${ttURL}`);
 	message.reply({
 		files: [{
 			attachment: res.data.data.hdplay,
@@ -131,7 +131,7 @@ const instadl = async(message, args) => {
 	const instaValid = /^https?:\/\/(?:www\.)?instagram\.com\/(?:p\/[\w-]+|reel\/[\w-]+)(?:\/\?.*)?$/;
 
 	if(instaValid.test(instaURL) === true) {
-	const res = await axios.get(`https://skizo.tech/api/instagram?apikey=confutatis3000&url=${instaURL}`);
+	const res = await axios.get(`https://skizo.tech/api/instagram?apikey=${process.env.skizo}&url=${instaURL}`);
 	for(let i = 0; i < res.data.length; i++) {
 		message.reply({
 			files: [{
