@@ -28,6 +28,11 @@ const client = new Client({
 
 client.on('messageCreate', async (message) => {
 	if(message.author.bot) return;
+	if(
+		message.channel.id !== "1270932131216101477" ||
+		message.channel.id !== "1270930102607151188" ||
+		message.channel.id !== "1270930331645644800" ||
+	)
     console.log('Message received:', message.content); 
     await bridge.serverbridge(client, message); 
 });
