@@ -29,6 +29,9 @@ const client = new Client({
 client.on('messageCreate', async (message) => {
 	if(message.author.bot) return;
 	if(
+		message.author.id === "444052085927837720"
+	) return message.reply(km dibanned);
+	if(
 		message.channel.id !== "1270932131216101477" && //1270932131216101477 Disorder
 		message.channel.id !== "1270972186857050217" && //heso
 		message.channel.id !== "1270930331645644800" &&//1270930331645644800 AWP
