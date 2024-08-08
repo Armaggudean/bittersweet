@@ -134,12 +134,19 @@ client.on(Events.MessageCreate, async message => {
 client.login(token);
 
 const express = require('express');
-const app = express();
+const path = require('path');
 
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'views')));
+
+// Serve index.html on root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-const listener = app.listen(8080, () => {
-  console.log("Your app on port 69 sus");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
