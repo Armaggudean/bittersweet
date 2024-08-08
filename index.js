@@ -37,6 +37,8 @@ client.on('messageCreate', async (message) => {
 		message.channel.id !== "1270930331645644800" &&//1270930331645644800 AWP
 		message.channel.id !== "1270985458565775504"
 	) return;
+	const regex = /\b(?:https?|ftp):\/\/(?:www\.)?[\w\-]+\.[\w\-]+(?:\.[\w\-]+)*(?:\/[\w\-.,@?^=%&:/~+#]*)?\b/;
+	if(regex.test(message.content) === true) return message.reply('jangan ngirim link');
     console.log('Message received:', message.content); 
     await bridge.serverbridge(client, message); 
 });
