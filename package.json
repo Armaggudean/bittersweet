@@ -4,7 +4,8 @@
   "description": "douka kono mama mou hanasanagira",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "build": "npm install && node index"
   },
   "author": "",
   "license": "ISC",
