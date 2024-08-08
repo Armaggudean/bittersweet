@@ -4,7 +4,7 @@ var nhentai_ts_1 = require("@shineiichijo/nhentai-ts");
 var nhentai = new nhentai_ts_1.NHentai({ site: 'nhentai.to' }); //configuring a mirror site of the class (you can check the available sites here: https://github.com/LuckyYam/nhentai-ts/blob/master/src/lib/constants.ts#L1)
 
 require('dotenv').config()
-const { Client, Events, ComponentType, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, REST, Routes, EmbedBuilder } = require('discord.js');
+const { Client, Events, ComponentType, GatewayIntentBits, DMChannel,ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, REST, Routes, EmbedBuilder } = require('discord.js');
 const axios = require("axios");
 const { createCanvas, loadImage } = require('canvas');
 const token = process.env.TOKEN;
@@ -48,6 +48,8 @@ client.on(Events.MessageCreate, async message => {
 	const autor = message.member;
     const warnatai = autor.roles.cache.sort((a, b) => b.position - a.position).first().color;
 
+	if(!message.content.startsWith(prefix)) return;
+	if(message.channel instanceof DMChannel) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/g); 
 	const cmd = args.shift().toLowerCase();
 
