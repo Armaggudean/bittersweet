@@ -31,7 +31,8 @@ client.on('messageCreate', async (message) => {
 	if(
 		message.channel.id !== "1270932131216101477" && //1270932131216101477 Disorder
 		message.channel.id !== "1270972186857050217" && //heso
-		message.channel.id !== "1270930331645644800" //1270930331645644800 AWP
+		message.channel.id !== "1270930331645644800" &&//1270930331645644800 AWP
+		message.channel.id !== "1270985458565775504"
 	) return;
     console.log('Message received:', message.content); 
     await bridge.serverbridge(client, message); 
