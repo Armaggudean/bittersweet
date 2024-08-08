@@ -3,7 +3,7 @@ const { Client, Events, ComponentType, GatewayIntentBits, ActionRowBuilder, Butt
 const monitoredChannels = {
     '643320097347207169': ['1270930331645644800'],
     '1261686963006865468': ['1270932131216101477'],
-    '1059325343506378793': ['1270930102607151188'],
+    '1270972186857050217': ['757100932885643355'], //heso
   };
 
 const serverbridge = async (client, message) => {
