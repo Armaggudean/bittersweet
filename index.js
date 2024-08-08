@@ -31,7 +31,7 @@ client.on('messageCreate', async (message) => {
 	if(
 		message.channel.id !== "1270932131216101477" ||
 		message.channel.id !== "1270930102607151188" ||
-		message.channel.id !== "1270930331645644800" ||
+		message.channel.id !== "1270930331645644800"
 	) return;
     console.log('Message received:', message.content); 
     await bridge.serverbridge(client, message); 
