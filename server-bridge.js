@@ -1,5 +1,9 @@
 const { Client, Events, ComponentType, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, REST, Routes, EmbedBuilder } = require('discord.js');
 
+var Filter = require('bad-words');
+const badwords = require("indonesian-badwords");
+var filter = new Filter({regex: /\*|\.|$/gi});
+
 const monitoredChannels = {
     '643320097347207169': ['1270930331645644800'],
     '1261686963006865468': ['1270932131216101477'],
@@ -37,7 +41,7 @@ const serverbridge = async (client, message) => {
                                 .setAuthor({ name: guild.name, iconURL: guild.iconURL({ dynamic: true }) })
                                 .setTitle(author.username)
                                 .setThumbnail(author.displayAvatarURL({ dynamic: true }))
-                                .setDescription(content)
+                                .setDescription(badwords.censor(filter.clean(content)))
                                 .setColor(warnatai)
                         ]
                     });
@@ -67,7 +71,7 @@ const serverbridge = async (client, message) => {
                                                     .setAuthor({ name: guild.name, iconURL: guild.iconURL({ dynamic: true }) })
                                                     .setTitle(author.username)
                                                     .setThumbnail(author.displayAvatarURL({ dynamic: true }))
-                                                    .setDescription(content)
+                                                    .setDescription(badwords.censor(filter.clean(content)))
                                                     .setColor(warnatai)
                                             ]
                                         });
