@@ -11,6 +11,7 @@ const token = process.env.TOKEN;
 const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
 const util = require('./utils');
+const bridge = require('./server-bridge');
 
 const client = new Client({
 	intents: [
@@ -19,6 +20,16 @@ const client = new Client({
 		GatewayIntentBits.MessageContent,
 		GatewayIntentBits.GuildMembers,
 	],
+});
+
+/**
+ * server bridge
+ */
+
+client.on('messageCreate', async (message) => {
+	if(message.author.bot) return;
+    console.log('Message received:', message.content); 
+    await bridge.serverbridge(client, message); 
 });
 
 /**
